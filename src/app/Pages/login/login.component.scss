@@ -1,0 +1,164 @@
+.example-card {
+    max-width: 500px;
+}
+
+::ng-deep .mat-mdc-form-field {
+    .mdc-text-field--filled {
+        background-color: white !important;
+    }
+}
+
+// ::ng-deep .mdc-text-field--filled {
+//     background-color: white;
+// }
+
+
+.my-card {
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+    margin: auto auto;
+    background-color: white;
+}
+
+.example-header-image {
+    background-image: url("https://material.angular.dev/assets/img/examples/shiba1.jpg");
+    background-size: cover;
+}
+
+$color-blue: #4285f4;
+$color-red: #ea4335;
+$color-yellow: #fbbc05;
+$color-green: #34a853;
+$color-darkblue: #4051b2;
+
+@mixin common-input-style {
+    display: flex;
+    justify-content: center;
+}
+
+.google {
+    @include common-input-style();
+    margin-top: 5rem;
+    font-size: 3rem;
+
+    span {
+        margin: 0;
+        padding: 0;
+    }
+
+    span:nth-child(1),
+    span:nth-child(4) {
+        color: $color-blue;
+    }
+
+    span:nth-child(2),
+    span:nth-child(6) {
+        color: $color-red;
+    }
+
+    span:nth-child(3) {
+        color: $color-yellow;
+    }
+
+    span:nth-child(5) {
+        color: $color-green;
+    }
+}
+
+.login {
+    @include common-input-style();
+    font-size: 2rem;
+    margin-top: 10px;
+}
+
+.desc {
+    @include common-input-style();
+    font-size: 1.2rem;
+    margin-top: 15px;
+    margin-bottom: 30px;
+}
+
+.example-full-width {
+    width: 100%;
+}
+
+.my-form-padding{
+    padding: 20px 50px;
+}
+
+// .inputbox-center{
+//     margin : auto auto;
+// }
+
+.my-email-input {
+    border-bottom: none;
+}
+
+.footer-section {
+    p {
+        color: $color-darkblue;
+        margin-left: 20px;
+        padding-left: 40px;
+    }
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 90%;
+    padding:40px 40px;
+    span {
+        display: block;
+        color: $color-darkblue;
+        margin-left: 20px;
+    }
+    button{
+        display: block;
+    }
+}
+
+//button styling
+
+section {
+    display: flex;
+    align-items: center;
+}
+
+.example-label {
+    font-size: 14px;
+    margin: 0 16px 0 8px;
+    min-width: 120px;
+}
+
+.example-button-row {
+    max-width: 600px;
+}
+
+.example-button-row .mat-mdc-button-base {
+    margin: 8px 8px 8px 0;
+}
+
+.example-flex-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.login-button-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0rem;
+}
+
+.login-button {
+    width: 60%;
+    font-size: 1.1rem;
+    background-color: $color-blue;
+    color: white;
+
+    &:hover {
+        background-color: darken($color-blue, 10%);
+    }
+}
