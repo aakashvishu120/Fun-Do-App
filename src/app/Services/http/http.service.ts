@@ -6,9 +6,9 @@ import { Injectable } from '@angular/core';
 })
 export class HttpService {
 
-   constructor( private http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  BASE_URL  = 'https://fundoonotes.incubation.bridgelabz.com/api/user';
+  BASE_URL = 'https://fundoonotes.incubation.bridgelabz.com/api/user';
 
   // getHeader()
   // {
@@ -18,13 +18,19 @@ export class HttpService {
   //   return header
   // }
 
-  getApi(endpoint: string, headers: HttpHeaders = new HttpHeaders())
-  {
+  getApi(endpoint: string, headers: HttpHeaders = new HttpHeaders()) {
     return this.http.get(this.BASE_URL + endpoint, { headers });
   }
-  
-  postApi(endpoint: string, payload: any, headers: HttpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' }))
-  {
+
+  postApi(endpoint: string, payload: any, headers: HttpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' })) {
     return this.http.post(this.BASE_URL + endpoint, payload, { headers });
+  }
+
+  putApi(endpoint: string, payload: any, headers: HttpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' })) {
+    return this.http.put(this.BASE_URL + endpoint, payload, { headers });
+  }
+
+  deleteApi(endpoint: string, headers: HttpHeaders = new HttpHeaders()) {
+    return this.http.delete(this.BASE_URL + endpoint, { headers });
   }
 }
