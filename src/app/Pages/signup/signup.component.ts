@@ -9,8 +9,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-
-
+import { UserService } from '../../Services/user/user.service';
 
 
 @Component({
@@ -35,24 +34,34 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 export class SignupComponent implements OnInit {
   signUpForm!: FormGroup; // Declare the form
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private user: UserService) { }
 
   ngOnInit(): void {
-     this.signUpForm = this.fb.group({
-    firstName: ['', Validators.required],
-    lastName: ['', Validators.required],
-    userName: ['', Validators.required],
-    password: ['', [Validators.required, Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/)]],
-    confirmPassword: ['', [Validators.required]],
-    showPassword: [false],
-    service: 'advanced'
-  },
-);
+    this.signUpForm = this.fb.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/)]],
+      confirmPassword: ['', [Validators.required]],
+      showPassword: [false],
+      service: 'advanced'
+    },
+    );
   }
 
   onSubmit(): void {
     if (this.signUpForm.valid) {
-      console.log('Form Submitted', this.signUpForm.value);
+      const { showPassword, confirmPassword, ...formData } = this.signUpForm.value;
+      console.log('Form Submitted', formData);
+
+      this.user.register(this.signUpForm.value).subscribe({
+        next: (result: any) => {
+          console.log('SignUp successful:', result);
+        },
+        error: () => {
+          console.error('SignUp failed:');
+        }
+      });
     } else {
       this.signUpForm.markAllAsTouched();
     }

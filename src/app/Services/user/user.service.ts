@@ -11,4 +11,9 @@ export class UserService {
   login(data:any) {
     return this.http.postApi('/login',data)
   }
+
+    register(data:any){
+    return this.http.postApi('/userSignUp',data)
+  }
+  
 }

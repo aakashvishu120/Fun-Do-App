@@ -35,23 +35,22 @@
                     </mat-form-field>
                 </div>
 
-                <!-- Username & email section -->
-                <mat-form-field class="example-full-width my-form-field-margin" appearance="outline">
-                    <mat-label>Username</mat-label>
-                    <input matInput formControlName="userName" id="userName" />
-                    <mat-hint>you can use letters, numbers & periods</mat-hint>
-                    <mat-error *ngIf="signUpForm.get('userName')?.hasError('required')">
-                        User Name is required.
+               <mat-form-field class="example-full-width my-form-field-margin" appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input matInput type="email" formControlName="email">
+                    <mat-hint>Errors appear instantly!</mat-hint>
+
+                    <mat-error
+                        *ngIf="signUpForm.get('email')?.hasError('email') && !signUpForm.get('email')?.hasError('required')">
+                        Please enter a valid email address
                     </mat-error>
-                    <mat-error *ngIf="signUpForm.get('userName')?.hasError('userName')">
-                        Enter a valid User Name.
+                    <mat-error *ngIf="signUpForm.get('email')?.hasError('required')">
+                        Email is <strong>required</strong>
                     </mat-error>
                 </mat-form-field>
 
                 <p class="current-email-link">Use my current email instead</p>
-
                 <input type="hidden" formControlName="service" />
-
 
                 <!-- Password fields -->
                 <div class="passwords">
@@ -78,7 +77,6 @@
                             Password must be at least 8 characters long, include one uppercase letter, one lowercase
                             letter, and one number.
                         </mat-error>
-
                     </mat-form-field>
                 </div>
 
@@ -86,7 +84,6 @@
                 <div class="check">
                     <mat-checkbox formControlName="showPassword">Show Password</mat-checkbox>
                 </div>
-
 
                 <div class="footer">
                     <span class="my-link">Sign in instead</span>
