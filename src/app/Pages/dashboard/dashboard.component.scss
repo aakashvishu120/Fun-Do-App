@@ -1,0 +1,137 @@
+$size1: 1.2rem;
+$size2: 2.5rem;
+$nav-bg-color: #feefc3;
+$btn-color: #ccc;
+$border-style : 0.1rem solid rgb(231, 227, 227);
+
+@mixin common-code($val1: 1.5rem, $val2: 0px, $val3: 10px) {
+    font-size: $val1;
+    margin: $val2 $val3;
+}
+
+@mixin flex-ycenter {
+    display: flex;
+    align-items: center;
+}
+
+@mixin border-right($val1, $val2) {
+    border-top-right-radius: $val1;
+    border-bottom-right-radius: $val2;
+}
+
+@mixin border-left($val1, $val2) {
+    border-top-left-radius: $val1;
+    border-bottom-left-radius: $val2;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.main-menu {
+    background-color: white;
+    border-bottom: 1px solid rgb(227, 221, 221);
+    color: gray;
+}
+
+.logo-image {
+    width: 40px;
+    margin: 0px 10px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.search-container {
+    display: flex;
+    // justify-content: space-between;
+}
+
+.search-container {
+    display: flex;
+    margin-left: $size2 + $size2;
+    font-size: 1rem;
+
+    input,
+    mat-icon {
+        border: 1px solid $btn-color;
+        padding: 12px 20px;
+        outline: none;
+        background-color: #f0f0f0;
+        // font-size: $size1;
+        border: none;
+    }
+
+    mat-icon {
+        cursor: pointer;
+    }
+
+    input {
+        width: 35rem;
+    }
+}
+
+.search-icon {
+    @include border-left(10px, 10px);
+}
+
+.close-icon {
+    @include border-right(10px, 10px);
+}
+
+.icon-image {
+    border-radius: 50px;
+    width: 2rem;
+    margin-left: $size1;
+    cursor: pointer;
+}
+
+.icons {
+    display: flex;
+    justify-content: end;
+    margin-left: 18rem;
+
+    .right-icons,
+    .left-icons {
+        @include flex-ycenter();
+    }
+
+    .right-icons {
+        margin-left: 3rem;
+    }
+
+    i {
+        @include common-code($val3: 20px);
+    }
+}
+
+
+.secondary-container {
+    display: flex;
+    width: 100%;
+}
+
+.navigation {
+    margin-top: 5px;
+    .single-nav {
+        // width: 20rem;
+        // padding: 15px 5px;
+
+        span {
+            @include common-code(0.9rem, 10px, 30px);
+            font-weight: 400;
+        }
+    }
+
+    .single-nav:hover {
+        @include border-right(50px, 50px);
+        background-color: #f0f0f0;
+    }
+}
+
+
+.single-nav {
+    display: flex;
+    align-items: center;
+    padding:3px 20px;
+    
+}

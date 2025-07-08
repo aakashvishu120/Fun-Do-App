@@ -1,0 +1,79 @@
+<mat-toolbar class="main-menu">
+  <button mat-icon-button class="example-icon" aria-label="Toggle navigation labels" (click)="toggleNavLabels()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <img src="assets/keep-logo.png" class="logo-image" alt="logo-image">
+  <span>Keep</span>
+  <!-- <span class="example-spacer"></span> -->
+  <div class="search-container">
+    <mat-icon class="search-icon">search</mat-icon>
+    <input type="text" placeholder="Search">
+    <mat-icon class="close-icon">close</mat-icon>
+  </div>
+
+  <div class="icons">
+    <div class="left-icons">
+      <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+        <mat-icon>refresh</mat-icon>
+      </button>
+
+      <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+        <mat-icon>view_agenda</mat-icon>
+      </button>
+
+      <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+        <mat-icon>settings</mat-icon>
+      </button>
+    </div>
+
+    <div class="right-icons">
+      <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+        <mat-icon>apps</mat-icon>
+      </button>
+      <img
+        src="https://lh3.googleusercontent.com/-AteSo_DpQVw/AAAAAAAAAAI/AAAAAAAAAAA/ALKGfklvWqNOrs7vyUrE1_L7kTpCqDHKqg/photo.jpg?sz=46"
+        alt="" class="icon-image">
+    </div>
+  </div>
+
+</mat-toolbar>
+
+<div class="secondary-container">
+  <div class="navigation">
+    <div class="single-nav">
+      <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+        <mat-icon>lightbulb_2</mat-icon>
+      </button>
+      <span *ngIf="showNavLabels">Notes</span>
+    </div>
+
+    <div class="single-nav">
+      <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+        <mat-icon >notifications</mat-icon>
+      </button>
+      <span *ngIf="showNavLabels">Remainders</span>
+    </div>
+
+    <div class="single-nav">
+      <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <span *ngIf="showNavLabels">Edit label</span>
+    </div>
+
+    <div class="single-nav">
+      <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+        <mat-icon>archive</mat-icon>
+      </button>
+      <span *ngIf="showNavLabels">Archive</span>
+    </div>
+
+    <div class="single-nav">
+      <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+        <mat-icon>delete</mat-icon>
+      </button>
+      <span *ngIf="showNavLabels">Trash</span>
+    </div>
+
+  </div>
+</div>
