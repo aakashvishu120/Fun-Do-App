@@ -9,6 +9,8 @@ import { MatDividerModule } from '@angular/material/divider';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { UserService } from '../../Services/user/user.service';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -24,14 +26,20 @@ import { UserService } from '../../Services/user/user.service';
     MatInputModule,
     MatDividerModule,
     MatIconModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSnackBarModule
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginComponent implements OnInit {
   userForm!: FormGroup; // Declare the form
 
-  constructor(private fb: FormBuilder, private user : UserService) {}
+  constructor(
+    private fb: FormBuilder,
+    private user: UserService,
+    private snackBar: MatSnackBar,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     // Initialize the form with validators
@@ -46,37 +54,33 @@ export class LoginComponent implements OnInit {
       console.log('Form Submitted', this.userForm.value);
 
       this.user.login(this.userForm.value).subscribe({
-      next: (result: any) => 
-      {
-        console.log('Login successful:', result);
+        next: (result: any) => {
+          console.log('Login successful:', result);
 
-        //Normalize token to ensure "Bearer " prefix
-        // Clean token and store it in localStorage
-        let token = result.id;
-        if (token.startsWith('Bearer ')) 
-        {
-          token = token.replace('Bearer ', '');
+          //Normalize token to ensure "Bearer " prefix
+          // Clean token and store it in localStorage
+          let token = result.id;
+          if (token.startsWith('Bearer ')) {
+            token = token.replace('Bearer ', '');
+          }
+          // Store the token in localStorage
+          localStorage.setItem('Token', token);
+          this.snackBar.open('Login successful!', 'Close',
+            {
+              duration: 3000,
+              panelClass: ['success-snackbar']
+            });
+
+          this.router.navigate(['/dashboard']);
+        },
+        error: () => {
+          console.error('Login failed:');
+          this.snackBar.open('Login failed!', 'Close', {
+            duration: 3000,
+            panelClass: ['error-snackbar']
+          });
         }
-      // Store the token in localStorage
-        localStorage.setItem('Token', token);
-
-        // this.snackBar.open('Login successful!', 'Close', 
-        // {
-        //   duration: 3000,
-        //   panelClass: ['success-snackbar']
-        // });
-
-        // this.router.navigate(['/dashboard']);
-      },
-      error: () => {
-        console.error('Login failed:');
-
-        // this.snackBar.open('Login failed!', 'Close', {
-        //   duration: 3000,
-        //   panelClass: ['error-snackbar']
-        // });
-      }
-    });
+      });
 
     } else {
       this.userForm.markAllAsTouched();

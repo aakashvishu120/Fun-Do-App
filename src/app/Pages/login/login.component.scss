@@ -71,24 +71,24 @@ $color-darkblue: #4051b2;
     width: 100%;
 }
 
-.my-form-padding{
+.my-form-padding {
     padding: 20px 50px;
 }
 
 
-.my-form-field-margin{
+.my-form-field-margin {
     margin-bottom: 20px;
 }
 
-.my-link{
+.my-link {
     cursor: pointer;
 }
 
-.my-link:hover{
+.my-link:hover {
     text-decoration: underline;
 }
 
-.my-custom-login-button{
+.my-custom-login-button {
     border-radius: 5px;
 }
 
@@ -103,11 +103,13 @@ $color-darkblue: #4051b2;
     justify-content: space-between;
     align-items: center;
     padding: 25px 0px;
+
     span {
         display: block;
         color: $color-darkblue;
     }
-    button{
+
+    button {
         display: block;
     }
 }

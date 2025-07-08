@@ -6,14 +6,14 @@ import { HttpService } from '../http/http.service';
 })
 export class UserService {
 
-  constructor(private http : HttpService) { }
+  constructor(private http: HttpService) { }
 
-  login(data:any) {
-    return this.http.postApi('/login',data)
+  login(data: any) {
+    return this.http.postApi('/login', data)
   }
 
-    register(data:any){
-    return this.http.postApi('/userSignUp',data)
+  register(data: any) {
+    return this.http.postApi('/userSignUp', data)
   }
-  
+
 }

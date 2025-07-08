@@ -10,6 +10,9 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { UserService } from '../../Services/user/user.service';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -25,7 +28,8 @@ import { UserService } from '../../Services/user/user.service';
     MatDividerModule,
     MatIconModule,
     ReactiveFormsModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatSnackBarModule
   ],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.scss',
@@ -34,7 +38,12 @@ import { UserService } from '../../Services/user/user.service';
 export class SignupComponent implements OnInit {
   signUpForm!: FormGroup; // Declare the form
 
-  constructor(private fb: FormBuilder, private user: UserService) { }
+  constructor(
+    private fb: FormBuilder,
+    private user: UserService,
+    private snackBar: MatSnackBar,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.signUpForm = this.fb.group({
@@ -57,9 +66,18 @@ export class SignupComponent implements OnInit {
       this.user.register(this.signUpForm.value).subscribe({
         next: (result: any) => {
           console.log('SignUp successful:', result);
+          this.snackBar.open('SignUp Successful!', 'Close',
+            {
+              duration: 3000,
+              panelClass: ['success-snackbar']
+            });
         },
         error: () => {
           console.error('SignUp failed:');
+          this.snackBar.open('SignUp failed!', 'Close', {
+            duration: 3000,
+            panelClass: ['error-snackbar']
+          });
         }
       });
     } else {

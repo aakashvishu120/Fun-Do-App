@@ -6,9 +6,9 @@ import { Router } from '@angular/router';
 })
 export class AuthGuardService {
 
-  constructor(private router: Router ) { }
+  constructor(private router: Router) { }
 
-   canActivate() : boolean {
+  canActivate(): boolean {
     // const token = localStorage.getItem('Token');
     // if(token) return true;
     // else{
