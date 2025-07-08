@@ -14,7 +14,7 @@
         <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="example-form">
             <!-- Email Field -->
             <mat-form-field class="example-full-width my-form-field-margin" appearance="outline">
-                <mat-label>Email or Phone*</mat-label>
+                <mat-label>Email or Phone</mat-label>
                 <input matInput formControlName="email" id="email" />
                 <mat-error *ngIf="userForm.get('email')?.hasError('required')">
                     Email is required.
@@ -26,7 +26,7 @@
 
             <!-- Password Field -->
             <mat-form-field class="example-full-width" appearance="outline">
-                <mat-label>Password*</mat-label>
+                <mat-label>Password</mat-label>
                 <input matInput type="password" id="password" formControlName="password" />
                 <mat-error *ngIf="userForm.get('password')?.hasError('required')">
                     Password is required.

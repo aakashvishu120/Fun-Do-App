@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
 
         //Normalize token to ensure "Bearer " prefix
         // Clean token and store it in localStorage
-        let token = result.data;
+        let token = result.id;
         if (token.startsWith('Bearer ')) 
         {
           token = token.replace('Bearer ', '');
