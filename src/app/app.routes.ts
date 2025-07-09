@@ -8,10 +8,11 @@ export const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
-    canActivate: [AuthGuardService ],//property - true or false
-    // children: [
-    //   // { path: '', component: AddNoteComponent },
-    //   { path: '', component: AllDisplayNotesComponent }, ]
+    canActivate: [AuthGuardService],//property - true or false
+    children: [
+      // { path: 'archive', component: ArchiveComponent },
+      // { path: 'trash', component: TrashComponent },
+    ]
   },
   {
     path: '',

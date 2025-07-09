@@ -9,11 +9,11 @@ export class UserService {
   constructor(private http: HttpService) { }
 
   login(data: any) {
-    return this.http.postApi('/login', data)
+    return this.http.postApi('/user/login', data)
   }
 
   register(data: any) {
-    return this.http.postApi('/userSignUp', data)
+    return this.http.postApi('/user/userSignUp', data)
   }
 
 }

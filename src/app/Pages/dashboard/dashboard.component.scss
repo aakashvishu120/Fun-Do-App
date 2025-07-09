@@ -54,19 +54,20 @@ $border-style : 0.1rem solid rgb(231, 227, 227);
     input,
     mat-icon {
         border: 1px solid $btn-color;
-        padding: 12px 20px;
         outline: none;
         background-color: #f0f0f0;
         // font-size: $size1;
         border: none;
     }
-
+    
     mat-icon {
+        padding: 12px 10px 12px 20px;
         cursor: pointer;
     }
 
     input {
-        width: 35rem;
+        width: 38rem;
+        font-size: 1rem;
     }
 }
 

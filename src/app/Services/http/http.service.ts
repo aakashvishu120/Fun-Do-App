@@ -8,7 +8,7 @@ export class HttpService {
 
   constructor(private http: HttpClient) { }
 
-  BASE_URL = 'https://fundoonotes.incubation.bridgelabz.com/api/user';
+  BASE_URL = 'https://fundoonotes.incubation.bridgelabz.com/api';
 
   // getHeader()
   // {
