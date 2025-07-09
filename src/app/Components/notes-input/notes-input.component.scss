@@ -1,0 +1,151 @@
+$size1: 1.2rem;
+$size2: 2.5rem;
+$nav-bg-color: #feefc3;
+$btn-color: #ccc;
+$border-style: 0.1rem solid rgb(231, 227, 227);
+
+@mixin common-code($val1: 1.5rem, $val2: 0px, $val3: 10px) {
+  font-size: $val1;
+  margin: $val2 $val3;
+}
+
+@mixin flex-ycenter {
+  display: flex;
+  align-items: center;
+}
+
+@mixin border-right($val1, $val2) {
+  border-top-right-radius: $val1;
+  border-bottom-right-radius: $val2;
+}
+
+@mixin border-left($val1, $val2) {
+  border-top-left-radius: $val1;
+  border-bottom-left-radius: $val2;
+}
+
+.body-search-bar {
+  margin: auto auto;
+  background-color: white;
+  border: 1px solid $btn-color;
+  width: 40rem;
+  box-shadow: 2px 2px 2px rgb(150, 150, 150);
+  border-radius: 10px;
+}
+
+.intial-container {
+  display: flex;
+  align-items: center;
+//   padding: 10px;
+}
+
+.search-bar {
+  @include flex-ycenter();
+  flex: 1;
+  padding: 10px 20px;
+  outline: none;
+  font-size: 1rem;
+  border: none;
+  @include border-left(10px, 10px);
+}
+
+.body-buttons {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+
+  button {
+    margin: 0 5px;
+  }
+}
+
+.content {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 8rem;
+
+  i {
+    font-size: 6rem;
+    color: rgb(234, 231, 231);
+  }
+}
+
+.my-notes-input{
+    display: flex;
+    flex-direction: column;
+
+    *{
+      border : none;
+      padding-top:3px;
+    }
+    
+    :first-child{
+        // padding: 5px 0px;
+        margin-top: 5px;
+    }
+}
+
+
+::ng-deep .mat-mdc-form-field-focus-overlay{
+    background-color: white !important;
+}
+
+::ng-deep .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mat-mdc-notch-piece{
+  border : none !important;
+}
+
+.title-field {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+  font-size: 1.2rem;
+  font-weight: 500;
+
+  ::ng-deep .mat-mdc-form-field-subscript-wrapper {
+    margin: 0 !important;
+    padding: 0 !important;
+    height: 0 !important;
+  }
+}
+
+
+::ng-deep .mat-mdc-form-field-infix{
+  min-height: 0;
+  padding: 0;
+}
+
+
+::ng-deep .my-notes-input .mdc-text-field--outlined .mat-mdc-form-field-infix, .mdc-text-field--no-label{
+  padding: 0;
+}
+
+.notes-icons-container{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.close-button{
+  // padding: 0px 10px;
+  margin-right : 20px;
+}
+
+.notes-icon{
+  button{
+    font-size: 0.5rem;
+    margin-left : 10px;
+  }
+}
+
+::ng-deep .mat-mdc-form-field-bottom-align::before{
+  display: none !important;
+}
+
+.icon{
+  font-size: 1rem;
+  padding: 0px 2px;
+}
+
+
+
