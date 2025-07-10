@@ -8,26 +8,28 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angul
 import { NotesService } from '../../Services/notes/notes.service';
 import { MatCardModule } from '@angular/material/card';
 import { NotesIconComponent } from '../notes-icon/notes-icon.component';
+import { NotesCardContainerComponent } from '../notes-card-container/notes-card-container.component';
 
 
 @Component({
   selector: 'app-notes',
   imports: [
-    MatButtonModule, 
-    MatIconModule, 
-    CommonModule, 
-    MatInputModule, 
-    MatFormFieldModule, 
-    FormsModule, 
-    ReactiveFormsModule, 
+    MatButtonModule,
+    MatIconModule,
+    CommonModule,
+    MatInputModule,
+    MatFormFieldModule,
+    FormsModule,
+    ReactiveFormsModule,
     MatCardModule,
-    NotesIconComponent
+    NotesIconComponent,
+    NotesCardContainerComponent
   ],
   templateUrl: './notes.component.html',
   styleUrl: './notes.component.scss'
 })
-export class NotesComponent implements OnInit{
-showButtons = true;
+export class NotesComponent  {
+  showButtons = true;
   notesForm!: FormGroup;
 
   constructor(
@@ -60,23 +62,21 @@ showButtons = true;
     });
   }
 
-notes: any[] = [];
-  ngOnInit() {
-    this.notesForm = this.fb.group({
-      title: [''],
-      description: ['']
-    });
+  // notes: any[] = [];
+  // ngOnInit() {
+  //   this.notesForm = this.fb.group({
+  //     title: [''],
+  //     description: ['']
+  //   });
 
-    this.note.getNotes().subscribe({
-      next: (result: any) => {
-        console.log('Notes Fetched Successfully :', result);
-         this.notes = result.data?.data || [];
-      },
-      error: () => {
-        console.error('Failed in Fetching the Notes :');
-      }
-    });
-
-
-  }
+  //   this.note.getNotes().subscribe({
+  //     next: (result: any) => {
+  //       console.log('Notes Fetched Successfully :', result);
+  //       this.notes = result.data?.data || [];
+  //     },
+  //     error: () => {
+  //       console.error('Failed in Fetching the Notes :');
+  //     }
+  //   });
+  // }
 }

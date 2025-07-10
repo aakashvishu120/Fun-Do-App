@@ -22,75 +22,31 @@
             <div class="my-notes-input">
 
                 <mat-form-field class="title-field" appearance="outline">
-                    <!-- <mat-label>Title</mat-label> -->
                     <input matInput formControlName="title" placeholder="Title" />
                 </mat-form-field>
 
                 <mat-form-field class="note-field" appearance="outline">
-                    <!-- <mat-label>Take a Note...</mat-label> -->
                     <input matInput formControlName="description" placeholder="Take a Note..." />
                 </mat-form-field>
 
-                <!-- <div class="notes-icons-container">
-                    <div class="notes-icon">
-                        <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-                            <mat-icon class="icon">format_color_text</mat-icon>
-                        </button>
-
-                        <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-                            <mat-icon class="icon">palette</mat-icon>
-                        </button>
-
-                        <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-                            <mat-icon class="icon">add_alert</mat-icon>
-                        </button>
-
-                        <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-                            <mat-icon class="icon">person_add</mat-icon>
-                        </button>
-
-                        <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-                            <mat-icon class="icon">photo</mat-icon>
-                        </button>
-
-                        <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-                            <mat-icon class="icon">archive</mat-icon>
-                        </button>
-
-                        <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-                            <mat-icon class="icon">more_vert</mat-icon>
-                        </button>
-
-                        <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-                            <mat-icon class="icon" disabled>undo</mat-icon>
-                        </button>
-
-                        <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-                            <mat-icon class="icon" disabled>redo</mat-icon>
-                        </button>
-                    </div>
-                    <button mat-button type="submit" class="close-button">
-                        Close
-                    </button>
-                </div> -->
+                <!-- calling a notes icon component -->
                 <app-notes-icon></app-notes-icon>
             </div>
         </form>
     </div>
-
-
-
 </div>
 
-
-
-<div class="notes-card-container">
-    <mat-card class="single-card-unit" appearance="outlined" *ngFor="let note of notes">
+<app-notes-card-container></app-notes-card-container>
+<!-- <div class="notes-card-container">
+    <mat-card class="single-card-unit" appearance="outlined" *ngFor="let note of notes" [ngStyle]="{ 'background-color': note.color || '#fff' }">
         <mat-card-header>
             <mat-card-title>{{ note.title }}</mat-card-title>
         </mat-card-header>
         <mat-card-content>
             <p>{{ note.description }}</p>
         </mat-card-content>
+        <mat-card-content class="icons-content">
+                <app-notes-icon [hideIcons]="['undo', 'redo', 'format_color_text', 'close']" class="embedded-icons"></app-notes-icon>
+        </mat-card-content>
     </mat-card>
-</div>
+</div> -->

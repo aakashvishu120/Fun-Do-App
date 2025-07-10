@@ -13,7 +13,7 @@ export class NotesService {
     const token = localStorage.getItem('Token');
     console.log("mytoken inside addNotes", token);
     const headers = new HttpHeaders({
-      "Authorization" : token || ''
+      "Authorization": token || ''
     });
 
     return this.http.postApi(`/notes/addNotes`, data, headers);
@@ -34,15 +34,14 @@ export class NotesService {
   // }
 
 
-  getNotes()
-  {
+  getNotes() {
     const token = localStorage.getItem('Token');
     let httpOption = {
       headers: new HttpHeaders(
-      {
-        'Authorization': `${token}`,
-        'Content-Type': 'application/json'
-      })
+        {
+          'Authorization': `${token}`,
+          'Content-Type': 'application/json'
+        })
     };
     // console.log('Headers:', httpOption);
     return this.http.getApi('/notes/getNotesList', httpOption.headers);

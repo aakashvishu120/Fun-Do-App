@@ -4,7 +4,6 @@
     </button>
     <img src="assets/keep-logo.png" class="logo-image" alt="logo-image">
     <span>Keep</span>
-    <!-- <span class="example-spacer"></span> -->
     <div class="search-container">
         <mat-icon class="search-icon">search</mat-icon>
         <input type="text" placeholder="Search">
@@ -41,7 +40,7 @@
     <div class="navigation">
 
         <div class="single-nav" routerLink="/dashboard/notes" routerLinkActive="active-link">
-            <button mat-icon-button   class="example-icon" aria-label="Notes">
+            <button mat-icon-button class="example-icon" aria-label="Notes">
                 <mat-icon>lightbulb_2</mat-icon>
             </button>
             <span *ngIf="showNavLabels">Notes</span>
@@ -59,7 +58,7 @@
                 <mat-icon>edit</mat-icon>
             </button>
             <span *ngIf="showNavLabels">Edit label</span>
-        </div> 
+        </div>
 
         <div class="single-nav" routerLink="/dashboard/archive" routerLinkActive="active-link">
             <button mat-icon-button class="example-icon" aria-label="Archive">
@@ -74,20 +73,9 @@
             </button>
             <span *ngIf="showNavLabels">Trash</span>
         </div>
-
     </div>
-
-    <!-- <div class="content-section">
-        i am inside my content section
-        <app-search-bar></app-search-bar>
-    </div> -->
 
     <div class="main-body">
-        <!-- <app-search-bar></app-search-bar> -->
-        <!-- <app-notes-input></app-notes-input> -->
         <router-outlet></router-outlet>
-        
     </div>
-
-
 </div>
