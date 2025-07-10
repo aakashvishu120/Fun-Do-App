@@ -31,7 +31,7 @@
                     <input matInput formControlName="description" placeholder="Take a Note..." />
                 </mat-form-field>
 
-                <div class="notes-icons-container">
+                <!-- <div class="notes-icons-container">
                     <div class="notes-icon">
                         <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
                             <mat-icon class="icon">format_color_text</mat-icon>
@@ -69,25 +69,23 @@
                             <mat-icon class="icon" disabled>redo</mat-icon>
                         </button>
                     </div>
-                    <!-- <button class="close-button">Close</button> -->
                     <button mat-button type="submit" class="close-button">
                         Close
                     </button>
-                </div>
-
-
+                </div> -->
+                <app-notes-icon></app-notes-icon>
             </div>
         </form>
     </div>
 
-    
-    
+
+
 </div>
 
 
 
 <div class="notes-card-container">
-    <mat-card class="example-card" appearance="outlined" *ngFor="let note of notes">
+    <mat-card class="single-card-unit" appearance="outlined" *ngFor="let note of notes">
         <mat-card-header>
             <mat-card-title>{{ note.title }}</mat-card-title>
         </mat-card-header>

@@ -7,6 +7,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NotesService } from '../../Services/notes/notes.service';
 import { MatCardModule } from '@angular/material/card';
+import { NotesIconComponent } from '../notes-icon/notes-icon.component';
 
 
 @Component({
@@ -19,7 +20,8 @@ import { MatCardModule } from '@angular/material/card';
     MatFormFieldModule, 
     FormsModule, 
     ReactiveFormsModule, 
-    MatCardModule
+    MatCardModule,
+    NotesIconComponent
   ],
   templateUrl: './notes.component.html',
   styleUrl: './notes.component.scss'

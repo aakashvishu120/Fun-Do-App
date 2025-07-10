@@ -117,12 +117,11 @@ $active-nav-bg-color : #feefc3;
 
     .single-nav {
         cursor: pointer;
-        // width: 20rem;
-        // padding: 15px 5px;
 
         span {
             @include common-code(0.9rem, 10px, 30px);
             font-weight: 400;
+            padding-right:27px;
         }
     }
 
@@ -140,8 +139,8 @@ $active-nav-bg-color : #feefc3;
 .single-nav {
     display: flex;
     align-items: center;
-    padding: 3px 20px;
-    transition: background-color 0.3s ease;
+    padding: 3px 48px 3px 15px;
+    // transition: background-color 0.3s ease;
 }
 
 
