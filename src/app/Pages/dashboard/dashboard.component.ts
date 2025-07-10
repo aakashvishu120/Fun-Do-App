@@ -3,11 +3,12 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { CommonModule } from '@angular/common';
-import { NotesInputComponent } from '../../Components/notes-input/notes-input.component';
+import { RouterOutlet } from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [MatToolbarModule, MatButtonModule, MatIconModule, CommonModule, NotesInputComponent],
+  imports: [MatToolbarModule, MatButtonModule, MatIconModule, CommonModule, RouterOutlet, RouterModule],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })

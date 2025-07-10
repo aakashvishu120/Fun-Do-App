@@ -1,0 +1,23 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { EditlabelComponent } from './editlabel.component';
+
+describe('EditlabelComponent', () => {
+  let component: EditlabelComponent;
+  let fixture: ComponentFixture<EditlabelComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [EditlabelComponent]
+    })
+    .compileComponents();
+
+    fixture = TestBed.createComponent(EditlabelComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

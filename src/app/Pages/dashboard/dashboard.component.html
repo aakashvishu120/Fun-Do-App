@@ -39,36 +39,37 @@
 
 <div class="secondary-container">
     <div class="navigation">
-        <div class="single-nav">
-            <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+
+        <div class="single-nav" routerLink="/dashboard/notes" routerLinkActive="active-link">
+            <button mat-icon-button   class="example-icon" aria-label="Notes">
                 <mat-icon>lightbulb_2</mat-icon>
             </button>
             <span *ngIf="showNavLabels">Notes</span>
         </div>
 
-        <div class="single-nav">
-            <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+        <div class="single-nav" routerLink="/dashboard/remainders" routerLinkActive="active-link">
+            <button mat-icon-button class="example-icon" aria-label="Remainders">
                 <mat-icon>notifications</mat-icon>
             </button>
             <span *ngIf="showNavLabels">Remainders</span>
         </div>
 
-        <div class="single-nav">
-            <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+        <div class="single-nav" routerLink="/dashboard/editlabel" routerLinkActive="active-link">
+            <button mat-icon-button class="example-icon" aria-label="Edit-Label">
                 <mat-icon>edit</mat-icon>
             </button>
             <span *ngIf="showNavLabels">Edit label</span>
-        </div>
+        </div> 
 
-        <div class="single-nav">
-            <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+        <div class="single-nav" routerLink="/dashboard/archive" routerLinkActive="active-link">
+            <button mat-icon-button class="example-icon" aria-label="Archive">
                 <mat-icon>archive</mat-icon>
             </button>
             <span *ngIf="showNavLabels">Archive</span>
         </div>
 
-        <div class="single-nav">
-            <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+        <div class="single-nav" routerLink="/dashboard/trash" routerLinkActive="active-link">
+            <button mat-icon-button class="example-icon" aria-label="Trash">
                 <mat-icon>delete</mat-icon>
             </button>
             <span *ngIf="showNavLabels">Trash</span>
@@ -83,7 +84,8 @@
 
     <div class="main-body">
         <!-- <app-search-bar></app-search-bar> -->
-        <app-notes-input></app-notes-input>
+        <!-- <app-notes-input></app-notes-input> -->
+        <router-outlet></router-outlet>
         
     </div>
 

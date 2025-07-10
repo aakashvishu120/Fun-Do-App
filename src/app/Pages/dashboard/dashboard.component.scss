@@ -3,6 +3,7 @@ $size2: 2.5rem;
 $nav-bg-color: #feefc3;
 $btn-color: #ccc;
 $border-style : 0.1rem solid rgb(231, 227, 227);
+$active-nav-bg-color : #feefc3;
 
 @mixin common-code($val1: 1.5rem, $val2: 0px, $val3: 10px) {
     font-size: $val1;
@@ -59,7 +60,7 @@ $border-style : 0.1rem solid rgb(231, 227, 227);
         // font-size: $size1;
         border: none;
     }
-    
+
     mat-icon {
         padding: 12px 10px 12px 20px;
         cursor: pointer;
@@ -113,7 +114,9 @@ $border-style : 0.1rem solid rgb(231, 227, 227);
 
 .navigation {
     margin-top: 5px;
+
     .single-nav {
+        cursor: pointer;
         // width: 20rem;
         // padding: 15px 5px;
 
@@ -129,12 +132,16 @@ $border-style : 0.1rem solid rgb(231, 227, 227);
     }
 }
 
+.active-link {
+    @include border-right(50px, 50px);
+    background-color: $active-nav-bg-color;
+}
 
 .single-nav {
     display: flex;
     align-items: center;
-    padding:3px 20px;
-    
+    padding: 3px 20px;
+    transition: background-color 0.3s ease;
 }
 
 .main-body {

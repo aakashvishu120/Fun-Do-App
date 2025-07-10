@@ -44,7 +44,7 @@ export class NotesService {
         'Content-Type': 'application/json'
       })
     };
-    console.log('Headers:', httpOption);
+    // console.log('Headers:', httpOption);
     return this.http.getApi('/notes/getNotesList', httpOption.headers);
   }
 }
