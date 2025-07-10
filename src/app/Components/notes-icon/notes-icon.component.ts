@@ -12,4 +12,6 @@ import { CommonModule } from '@angular/common';
 })
 export class NotesIconComponent {
   @Input() hideIcons: string[] = [];
+  @Input() context: 'form' | 'card' = 'form';
+
 }

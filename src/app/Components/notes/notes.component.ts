@@ -28,14 +28,14 @@ import { NotesCardContainerComponent } from '../notes-card-container/notes-card-
   templateUrl: './notes.component.html',
   styleUrl: './notes.component.scss'
 })
-export class NotesComponent  {
+export class NotesComponent implements OnInit {
   showButtons = true;
   notesForm!: FormGroup;
 
   constructor(
     private fb: FormBuilder,
-    private note: NotesService,
-  ) { }
+    private note: NotesService
+  ) {}
 
   hideButtons() {
     this.showButtons = false;
@@ -62,21 +62,11 @@ export class NotesComponent  {
     });
   }
 
-  // notes: any[] = [];
-  // ngOnInit() {
-  //   this.notesForm = this.fb.group({
-  //     title: [''],
-  //     description: ['']
-  //   });
-
-  //   this.note.getNotes().subscribe({
-  //     next: (result: any) => {
-  //       console.log('Notes Fetched Successfully :', result);
-  //       this.notes = result.data?.data || [];
-  //     },
-  //     error: () => {
-  //       console.error('Failed in Fetching the Notes :');
-  //     }
-  //   });
-  // }
+  notes: any[] = [];
+  ngOnInit() {
+    this.notesForm = this.fb.group({
+      title: [''],
+      description: ['']
+    });
+  }
 }

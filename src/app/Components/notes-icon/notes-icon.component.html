@@ -1,4 +1,4 @@
-<div class="notes-icons-container">
+<div class="notes-icons-container"  [ngClass]="context">
     <div class="notes-icon">
         <button *ngIf="!hideIcons.includes('format_color_text')" mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
             <mat-icon class="icon">format_color_text</mat-icon>
@@ -37,7 +37,7 @@
         </button>
     </div>
     <!-- <button class="close-button">Close</button> -->
-    <button *ngIf="!hideIcons.includes('close')" mat-button type="submit" class="close-button">
+    <button *ngIf="!hideIcons.includes('close') && context === 'form'" mat-button type="submit" class="close-button">
         Close
     </button>
 </div>
