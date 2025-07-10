@@ -1,4 +1,4 @@
-<div class="body-search-bar" #container (document:click)="onClickOutside($event, container)">
+<div class="body-search-bar">
 
     <!-- Initial Simple Input View -->
     <div class="intial-container" *ngIf="showButtons">
@@ -7,7 +7,7 @@
             <button mat-icon-button aria-label="check_box">
                 <mat-icon>check_box</mat-icon>
             </button>
-            <button mat-icon-button aria-label="brush"> 
+            <button mat-icon-button aria-label="brush">
                 <mat-icon>brush</mat-icon>
             </button>
             <button mat-icon-button aria-label="photo">
@@ -70,7 +70,7 @@
                         </button>
                     </div>
                     <!-- <button class="close-button">Close</button> -->
-                     <button mat-button type="submit" class="close-button">
+                    <button mat-button type="submit" class="close-button">
                         Close
                     </button>
                 </div>
@@ -80,4 +80,19 @@
         </form>
     </div>
 
+    
+    
+</div>
+
+
+
+<div class="notes-card-container">
+    <mat-card class="example-card" appearance="outlined" *ngFor="let note of notes">
+        <mat-card-header>
+            <mat-card-title>{{ note.title }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <p>{{ note.description }}</p>
+        </mat-card-content>
+    </mat-card>
 </div>

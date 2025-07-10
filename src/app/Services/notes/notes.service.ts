@@ -20,13 +20,31 @@ export class NotesService {
   }
 
 
-  getNotes(){
-  const token = localStorage.getItem('Token');
-    console.log("mytoken inside getNotes", token);
-    const headers = new HttpHeaders({
-      "Authorization" : token || ''
-    });
-    const queryParams = `?access_token=${token}`;
-    return this.http.getApi(`/notes/getNotesList${queryParams}`);
+  // getNotes(){
+  // const token = localStorage.getItem('Token');
+  //   console.log("mytoken inside getNotes", token);
+  //   const headers = new HttpHeaders({
+  //     "Authorization" : token || ''
+  //   });
+  //   const queryParams = `?access_token=${token}`;
+  //   // return this.http.getApi(`/notes/getNotesList${queryParams}`);
+  //   return this.http.getApi(`/notes/getNotesList`, {headers:headers});
+  //   // return this.http.getApi(`/notes/addNotes`, headers);
+
+  // }
+
+
+  getNotes()
+  {
+    const token = localStorage.getItem('Token');
+    let httpOption = {
+      headers: new HttpHeaders(
+      {
+        'Authorization': `${token}`,
+        'Content-Type': 'application/json'
+      })
+    };
+    console.log('Headers:', httpOption);
+    return this.http.getApi('/notes/getNotesList', httpOption.headers);
   }
 }

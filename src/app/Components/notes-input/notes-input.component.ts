@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
@@ -6,10 +6,11 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NotesService } from '../../Services/notes/notes.service';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-notes-input',
-  imports: [MatButtonModule, MatIconModule, CommonModule, MatInputModule, MatFormFieldModule, FormsModule, ReactiveFormsModule],
+  imports: [MatButtonModule, MatIconModule, CommonModule, MatInputModule, MatFormFieldModule, FormsModule, ReactiveFormsModule, MatCardModule],
   templateUrl: './notes-input.component.html',
   styleUrl: './notes-input.component.scss',
   standalone: true,
@@ -48,7 +49,7 @@ export class NotesInputComponent implements OnInit {
     });
   }
 
-
+notes: any[] = [];
   ngOnInit() {
     this.notesForm = this.fb.group({
       title: [''],
@@ -58,6 +59,7 @@ export class NotesInputComponent implements OnInit {
     this.note.getNotes().subscribe({
       next: (result: any) => {
         console.log('Notes Fetched Successfully :', result);
+         this.notes = result.data?.data || [];
       },
       error: () => {
         console.error('Failed in Fetching the Notes :');
