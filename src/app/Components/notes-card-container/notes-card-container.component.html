@@ -1,5 +1,6 @@
 <div class="notes-card-container">
-    <mat-card class="single-card-unit" appearance="outlined" *ngFor="let note of notes" [ngStyle]="{ 'background-color': note.color || '#fff' }">
+    <mat-card class="single-card-unit" appearance="outlined" *ngFor="let note of notes"
+        [ngStyle]="{ 'background-color': note.color || '#fff' }">
         <mat-card-header>
             <mat-card-title>{{ note.title }}</mat-card-title>
         </mat-card-header>
@@ -7,7 +8,8 @@
             <p>{{ note.description }}</p>
         </mat-card-content>
         <mat-card-content class="icons-content">
-                <app-notes-icon context="card" [hideIcons]="['undo', 'redo', 'format_color_text', 'close']" class="embedded-icons"></app-notes-icon>
+            <app-notes-icon [noteId]="note.id" context="card"
+                [hideIcons]="['undo', 'redo', 'format_color_text', 'close']" class="embedded-icons"></app-notes-icon>
         </mat-card-content>
     </mat-card>
 </div>

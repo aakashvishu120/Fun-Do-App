@@ -4,7 +4,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-// import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NotesService } from '../../Services/notes/notes.service';
 import { MatCardModule } from '@angular/material/card';
 import { NotesIconComponent } from '../notes-icon/notes-icon.component';
@@ -25,9 +24,6 @@ import { NotesIconComponent } from '../notes-icon/notes-icon.component';
   styleUrl: './notes-card-container.component.scss'
 })
 export class NotesCardContainerComponent implements OnInit {
-    // showButtons = true;
-  // notesForm!: FormGroup;
-
   constructor(
     private note: NotesService
   ) { }

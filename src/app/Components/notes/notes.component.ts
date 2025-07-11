@@ -35,7 +35,7 @@ export class NotesComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private note: NotesService
-  ) {}
+  ) { }
 
   hideButtons() {
     this.showButtons = false;
