@@ -18,6 +18,7 @@ export class ColorPickerComponent {
   ];
 
   selectColor(color: string) {
+    console.log("color picker componnt", color);
     this.colorSelected.emit(color);
   }
 }

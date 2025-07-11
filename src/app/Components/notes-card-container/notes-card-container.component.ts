@@ -33,7 +33,11 @@ export class NotesCardContainerComponent implements OnInit {
     this.note.getNotes().subscribe({
       next: (result: any) => {
         console.log('Notes Fetched Successfully inside card container:', result);
-        this.notes = result.data?.data || [];
+        // this.notes = result.data?.data || [];
+        const allNotes = result.data?.data || [];
+        this.notes = allNotes.filter((note: any) => !note.isDeleted && !note.isArchived);
+
+
       },
       error: () => {
         console.error('Failed in Fetching the Notes :');

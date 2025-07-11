@@ -74,7 +74,7 @@ export class NotesComponent implements OnInit {
   onColorPicked(color: string) {
     this.selectedColor = color;
     this.notesForm.patchValue({ color });
-    console.log('Selected color:', color);
+    console.log('notes component Selected color:', color);
   }
 
 

@@ -27,6 +27,7 @@ export class NotesIconComponent {
 
   @Output() colorChange = new EventEmitter<string>();
   setNoteColor(color: string) {
+    console.log("notes-icon component colorvalue" , color);
     this.colorChange.emit(color);
   }
 
