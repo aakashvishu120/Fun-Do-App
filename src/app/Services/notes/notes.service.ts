@@ -47,7 +47,7 @@ export class NotesService {
     return this.http.getApi('/notes/getNotesList', httpOption.headers);
   }
 
-  trashNotes(data:any) {
+  getTrashNotesList() {
     const token = localStorage.getItem('Token');
     let httpOption = {
       headers: new HttpHeaders(
@@ -57,6 +57,19 @@ export class NotesService {
         })
     };
     // console.log('Headers:', httpOption);
+    return this.http.getApi('/notes/getTrashNotesList', httpOption.headers);
+  }
+
+
+  trashNotes(data:any) {
+    const token = localStorage.getItem('Token');
+    let httpOption = {
+      headers: new HttpHeaders(
+        {
+          'Authorization': `${token}`,
+          'Content-Type': 'application/json'
+        })
+    };
     return this.http.postApi('/notes/trashNotes', data , httpOption.headers);
   }
 }

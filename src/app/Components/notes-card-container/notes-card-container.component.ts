@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit,Input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
@@ -18,7 +18,6 @@ import { NotesIconComponent } from '../notes-icon/notes-icon.component';
     MatFormFieldModule,
     MatCardModule,
     NotesIconComponent,
-    NotesCardContainerComponent
   ],
   templateUrl: './notes-card-container.component.html',
   styleUrl: './notes-card-container.component.scss'
@@ -28,7 +27,7 @@ export class NotesCardContainerComponent implements OnInit {
     private note: NotesService
   ) { }
 
-  notes: any[] = [];
+  @Input() notes: any[] = [];
   ngOnInit() {
     this.note.getNotes().subscribe({
       next: (result: any) => {

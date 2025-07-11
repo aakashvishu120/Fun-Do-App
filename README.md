@@ -131,3 +131,20 @@ In Angular, subscribe() is a method used to listen for and react to values emitt
     "username": "username@gmail.com",
     "password": "Aaskash120@"
 }
+
+
+component Hierarchy :
+
+Dashboard Page
+1 notes : title + description
+    notes-icon
+        color-picker
+        note-menu
+    app-notes-card-container
+        notes-icon
+            color-picker
+            note-menu
+2 remainder
+3 edit labels
+4 archive
+5 trash
