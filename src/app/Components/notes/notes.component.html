@@ -30,7 +30,7 @@
                 </mat-form-field>
 
                 <!-- calling a notes icon component -->
-                <app-notes-icon contect="form"></app-notes-icon>
+                <app-notes-icon context="form"  (colorChange)="onColorPicked($event)"  (closeForm)="onFormClose()"></app-notes-icon>
             </div>
         </form>
     </div>

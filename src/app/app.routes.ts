@@ -15,6 +15,7 @@ export const routes: Routes = [
     component: DashboardComponent,
     canActivate: [AuthGuardService],//property - true or false
     children: [
+      { path: '', component: NotesComponent },
       { path: 'archive', component: ArchiveComponent },
       { path: 'editlabel', component: EditlabelComponent },
       { path: 'notes', component: NotesComponent },

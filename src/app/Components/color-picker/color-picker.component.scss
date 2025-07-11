@@ -1,0 +1,22 @@
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 4px;
+  padding: 0.5rem;
+}
+
+.color-box {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 1px solid #ccc;
+
+  &:hover {
+    border: 2px solid #555;
+  }
+}
+
+::ng-deep .mat-mdc-menu-panel{
+    max-width: 365px !important;
+}

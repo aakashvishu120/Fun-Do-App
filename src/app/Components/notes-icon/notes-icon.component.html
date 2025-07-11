@@ -1,36 +1,46 @@
 <div class="notes-icons-container" [ngClass]="context">
     <div class="notes-icon">
-        <button *ngIf="!hideIcons.includes('format_color_text')" mat-icon-button class="example-icon"
+        <button type="button" *ngIf="!hideIcons.includes('format_color_text')" mat-icon-button class="example-icon"
             aria-label="Example icon-button with share icon">
             <mat-icon class="icon">format_color_text</mat-icon>
         </button>
 
-        <button *ngIf="!hideIcons.includes('palette')" mat-icon-button class="example-icon"
+        <!-- <button *ngIf="!hideIcons.includes('palette')" mat-icon-button class="example-icon"
             aria-label="Example icon-button with share icon">
+            <mat-icon class="icon">palette</mat-icon>
+        </button> -->
+
+        <mat-menu #colorMenu="matMenu">
+            <app-color-picker (colorSelected)="setNoteColor($event)"></app-color-picker>
+        </mat-menu>
+
+        <button type="button" *ngIf="!hideIcons.includes('palette')" mat-icon-button class="example-icon"
+            [matMenuTriggerFor]="colorMenu" aria-label="Color palette">
             <mat-icon class="icon">palette</mat-icon>
         </button>
 
-        <button *ngIf="!hideIcons.includes('add_alert')" mat-icon-button class="example-icon"
+
+        <button type="button" *ngIf="!hideIcons.includes('add_alert')" mat-icon-button class="example-icon"
             aria-label="Example icon-button with share icon">
             <mat-icon class="icon">add_alert</mat-icon>
         </button>
 
-        <button *ngIf="!hideIcons.includes('person_add')" mat-icon-button class="example-icon"
+        <button type="button" *ngIf="!hideIcons.includes('person_add')" mat-icon-button class="example-icon"
             aria-label="Example icon-button with share icon">
             <mat-icon class="icon">person_add</mat-icon>
         </button>
 
-        <button *ngIf="!hideIcons.includes('photo')" mat-icon-button class="example-icon"
+        <button type="button" *ngIf="!hideIcons.includes('photo')" mat-icon-button class="example-icon"
             aria-label="Example icon-button with share icon">
             <mat-icon class="icon">photo</mat-icon>
         </button>
 
-        <button *ngIf="!hideIcons.includes('archive')" mat-icon-button class="example-icon"
+        <button type="button" *ngIf="!hideIcons.includes('archive')" mat-icon-button class="example-icon"
             aria-label="Example icon-button with share icon">
             <mat-icon class="icon">archive</mat-icon>
         </button>
 
-        <button *ngIf="!hideIcons.includes('more_vert')" mat-icon-button [matMenuTriggerFor]="menu"
+        <button type="button" *ngIf="!hideIcons.includes('more_vert')" mat-icon-button [matMenuTriggerFor]="menu"
             aria-label="More options">
             <mat-icon class="icon">more_vert</mat-icon>
         </button>
@@ -39,12 +49,12 @@
             <app-note-menu [noteId]="noteId"></app-note-menu>
         </mat-menu>
 
-        <button *ngIf="!hideIcons.includes('undo')" mat-icon-button class="example-icon"
+        <button type="button" *ngIf="!hideIcons.includes('undo')" mat-icon-button class="example-icon"
             aria-label="Example icon-button with share icon">
             <mat-icon class="icon" disabled>undo</mat-icon>
         </button>
 
-        <button *ngIf="!hideIcons.includes('redo')" mat-icon-button class="example-icon"
+        <button type="button" *ngIf="!hideIcons.includes('redo')" mat-icon-button class="example-icon"
             aria-label="Example icon-button with share icon">
             <mat-icon class="icon" disabled>redo</mat-icon>
         </button>

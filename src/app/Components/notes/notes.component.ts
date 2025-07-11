@@ -30,6 +30,8 @@ import { NotesCardContainerComponent } from '../notes-card-container/notes-card-
 })
 export class NotesComponent implements OnInit {
   showButtons = true;
+  selectedColor: string = '';
+
   notesForm!: FormGroup;
 
   constructor(
@@ -49,12 +51,19 @@ export class NotesComponent implements OnInit {
     }
   }
 
+  onFormClose() {
+    this.showButtons = true;                 // Collapse the form
+    this.notesForm.reset();                  // Clear form fields
+    this.selectedColor = '';                // Reset color if needed
+  }
+
   onSubmit(): void {
     console.log("notes form values", this.notesForm.value);
 
     this.note.addNotes(this.notesForm.value).subscribe({
       next: (result: any) => {
         console.log('Notes Added Successfully :', result);
+        this.onFormClose();
       },
       error: () => {
         console.error('Failed in Adding Notes :');
@@ -62,11 +71,19 @@ export class NotesComponent implements OnInit {
     });
   }
 
+  onColorPicked(color: string) {
+    this.selectedColor = color;
+    this.notesForm.patchValue({ color });
+    console.log('Selected color:', color);
+  }
+
+
   notes: any[] = [];
   ngOnInit() {
     this.notesForm = this.fb.group({
       title: [''],
-      description: ['']
+      description: [''],
+      color : ['']
     });
   }
 }
