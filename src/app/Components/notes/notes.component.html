@@ -17,7 +17,7 @@
     </div>
 
     <!-- Expanded Form View -->
-    <div class="form-container" *ngIf="!showButtons">
+    <div class="form-container" *ngIf="!showButtons" [ngStyle]="{ 'background-color': selectedColor || '#fff', 'border-radius': '10px' }">
         <form [formGroup]="notesForm" (ngSubmit)="onSubmit()">
             <div class="my-notes-input">
 
