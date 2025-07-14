@@ -17,7 +17,7 @@ constructor(
   ngOnInit() {
     this.note.getTrashNotesList().subscribe({
       next: (result: any) => {
-        console.log('Notes Fetched Successfully inside card container:', result);
+        console.log('Notes Fetched Successfully inside trash.ts :', result);
         this.notes = result.data?.data || [];
         console.log("inside trash component",this.notes);
       },

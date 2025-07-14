@@ -60,6 +60,19 @@ export class NotesService {
     return this.http.getApi('/notes/getTrashNotesList', httpOption.headers);
   }
 
+  getArchiveNotesList(){
+      const token = localStorage.getItem('Token');
+    let httpOption = {
+      headers: new HttpHeaders(
+        {
+          'Authorization': `${token}`,
+          'Content-Type': 'application/json'
+        })
+    };
+    // console.log('Headers:', httpOption);
+    return this.http.getApi('/notes/getArchiveNotesList', httpOption.headers);
+  }
+
 
   trashNotes(data:any) {
     const token = localStorage.getItem('Token');

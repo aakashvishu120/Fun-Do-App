@@ -148,3 +148,122 @@ Dashboard Page
 3 edit labels
 4 archive
 5 trash
+
+
+
+1. Parent-to-Child Communication:
+@Input() Decorator: This is the primary method for passing data from a parent component to a child component. The parent binds a property to an input property on the child.
+TypeScript
+
+    // Child Component
+    import { Component, Input } from '@angular/core';
+
+    @Component({
+      selector: 'app-child',
+      template: `<h2>{{ message }}</h2>`
+    })
+    export class ChildComponent {
+      @Input() message: string;
+    }
+
+    // Parent Component
+    import { Component } from '@angular/core';
+
+    @Component({
+      selector: 'app-parent',
+      template: `<app-child [message]="parentMessage"></app-child>`
+    })
+    export class ParentComponent {
+      parentMessage = 'Hello from parent!';
+    }
+2. Child-to-Parent Communication:
+@Output() Decorator and EventEmitter: The child component emits an event using an EventEmitter, and the parent component listens for this event to receive data.
+TypeScript
+
+    // Child Component
+    import { Component, Output, EventEmitter } from '@angular/core';
+
+    @Component({
+      selector: 'app-child',
+      template: `<button (click)="sendMessage()">Send Message</button>`
+    })
+    export class ChildComponent {
+      @Output() messageEvent = new EventEmitter<string>();
+
+      sendMessage() {
+        this.messageEvent.emit('Message from child!');
+      }
+    }
+
+    // Parent Component
+    import { Component } from '@angular/core';
+
+    @Component({
+      selector: 'app-parent',
+      template: `<app-child (messageEvent)="receiveMessage($event)"></app-child>
+                 <p>{{ receivedMessage }}</p>`
+    })
+    export class ParentComponent {
+      receivedMessage: string;
+
+      receiveMessage(message: string) {
+        this.receivedMessage = message;
+      }
+    }
+@ViewChild() Decorator: The parent can gain a reference to a child component instance and directly access its public properties and methods. This should be used cautiously as it can lead to tight coupling.
+
+
+
+3. Communication Between Unrelated Components:
+Shared Service: This is the recommended approach for sharing data between components that do not have a direct parent-child relationship. A service acts as a central data store, and components inject and interact with it to share information, often using RxJS Subjects (like BehaviorSubject) for reactive data streams.
+TypeScript
+
+    // Shared Service
+    import { Injectable } from '@angular/core';
+    import { BehaviorSubject } from 'rxjs';
+
+    @Injectable({
+      providedIn: 'root'
+    })
+    export class DataService {
+      private messageSource = new BehaviorSubject<string>('Default message');
+      currentMessage = this.messageSource.asObservable();
+
+      changeMessage(message: string) {
+        this.messageSource.next(message);
+      }
+    }
+
+    // Component A
+    import { Component } from '@angular/core';
+    import { DataService } from '../data.service';
+
+    @Component({
+      selector: 'app-component-a',
+      template: `<button (click)="updateMessage()">Update Message</button>`
+    })
+    export class ComponentA {
+      constructor(private dataService: DataService) {}
+
+      updateMessage() {
+        this.dataService.changeMessage('Message from Component A');
+      }
+    }
+
+    // Component B
+    import { Component, OnInit } from '@angular/core';
+    import { DataService } from '../data.service';
+
+    @Component({
+      selector: 'app-component-b',
+      template: `<p>{{ receivedMessage }}</p>`
+    })
+    export class ComponentB implements OnInit {
+      receivedMessage: string;
+
+      constructor(private dataService: DataService) {}
+
+      ngOnInit() {
+        this.dataService.currentMessage.subscribe(message => this.receivedMessage = message);
+      }
+    }
