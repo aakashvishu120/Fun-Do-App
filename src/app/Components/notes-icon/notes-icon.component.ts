@@ -27,13 +27,24 @@ export class NotesIconComponent {
 
   @Output() colorChange = new EventEmitter<string>();
   setNoteColor(color: string) {
-    console.log("notes-icon component colorvalue" , color);
+    console.log("notes-icon component colorvalue", color);
     this.colorChange.emit(color);
   }
 
   @Output() closeForm = new EventEmitter<void>();
   onCloseClicked() {
     this.closeForm.emit();
+  }
+
+  @Output() archive = new EventEmitter<void>();
+  onArchiveClicked() {
+    this.archive.emit();
+  }
+
+  @Output() trashed = new EventEmitter<void>();
+  onNoteTrashed() {
+    this.trashed.emit();
+    console.log("notes icon " , this.trashed);
   }
 
 }

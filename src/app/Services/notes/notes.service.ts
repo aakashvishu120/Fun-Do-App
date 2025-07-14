@@ -60,8 +60,20 @@ export class NotesService {
     return this.http.getApi('/notes/getTrashNotesList', httpOption.headers);
   }
 
-  getArchiveNotesList(){
-      const token = localStorage.getItem('Token');
+  trashNotes(data:any) {
+    const token = localStorage.getItem('Token');
+    let httpOption = {
+      headers: new HttpHeaders(
+        {
+          'Authorization': `${token}`,
+          'Content-Type': 'application/json'
+        })
+    };
+    return this.http.postApi('/notes/trashNotes', data , httpOption.headers);
+  }
+
+    getArchiveNotesList(){
+    const token = localStorage.getItem('Token');
     let httpOption = {
       headers: new HttpHeaders(
         {
@@ -74,7 +86,8 @@ export class NotesService {
   }
 
 
-  trashNotes(data:any) {
+  archiveNotes(data:any) {
+    console.log("reached inside notes service")
     const token = localStorage.getItem('Token');
     let httpOption = {
       headers: new HttpHeaders(
@@ -83,6 +96,7 @@ export class NotesService {
           'Content-Type': 'application/json'
         })
     };
-    return this.http.postApi('/notes/trashNotes', data , httpOption.headers);
+    return this.http.postApi('/notes/archiveNotes', data , httpOption.headers);
   }
+
 }

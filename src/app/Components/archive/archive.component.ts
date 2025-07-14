@@ -17,9 +17,8 @@ constructor(
   ngOnInit() {
     this.note.getArchiveNotesList().subscribe({
       next: (result: any) => {
-        console.log('Notes Fetched Successfully inside archive.ts:', result);
         this.notes = result.data?.data || [];
-        console.log("inside trash component",this.notes);
+        console.log("inside archive component",this.notes);
       },
       error: () => {
         console.error('Failed in Fetching the Notes :');

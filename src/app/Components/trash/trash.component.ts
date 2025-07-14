@@ -9,21 +9,25 @@ import { NotesCardContainerComponent } from '../notes-card-container/notes-card-
   styleUrl: './trash.component.scss'
 })
 export class TrashComponent implements OnInit {
-constructor(
+  constructor(
     private note: NotesService
   ) { }
 
   notes: any[] = [];
-  ngOnInit() {
+
+  onNoteTrashed(): void {
     this.note.getTrashNotesList().subscribe({
       next: (result: any) => {
-        console.log('Notes Fetched Successfully inside trash.ts :', result);
+        console.log('Notes Delted Successfully inside trash.ts :', result);
         this.notes = result.data?.data || [];
-        console.log("inside trash component",this.notes);
+        console.log("inside trash component", this.notes);
       },
       error: () => {
         console.error('Failed in Fetching the Notes :');
       }
     });
+  }
+  ngOnInit() {
+    this.onNoteTrashed();
   }
 }

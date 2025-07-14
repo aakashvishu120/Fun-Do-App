@@ -1,9 +1,15 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { NotesService } from '../../Services/notes/notes.service';
+
+ 
+interface DeleteNotePayload {
+  isDeleted: boolean;
+  noteIdList: string[];
+}
 
 
 @Component({
@@ -24,29 +30,26 @@ export class NoteMenuComponent {
 
 
   @Input() noteId!: string;
+  @Output() trashed = new EventEmitter<void>();  //for refershing the parent after delete
 
   deleteNote() {
-  console.log(`Deleting note with ID: ${this.noteId}`);
+    console.log(`Deleting note with ID: ${this.noteId}`);
 
-  interface DeleteNotePayload {
-    isDeleted: boolean;
-    noteIdList: string[];  
+    const payload: DeleteNotePayload = {
+      isDeleted: true,
+      noteIdList: [this.noteId]
+    };
+
+    this.note.trashNotes(payload).subscribe({
+      next: (result: any) => {
+        console.log('Notes Deleted Successfully :', result);
+        this.trashed.emit();   //refreshing parent
+      },
+      error: () => {
+        console.error('Failed in Deleting Notes :');
+      }
+    });
   }
-
-  const payload: DeleteNotePayload = {
-    isDeleted: true,
-    noteIdList: [this.noteId]  
-  };
-
-  this.note.trashNotes(payload).subscribe({
-    next: (result: any) => {
-      console.log('Notes Deleted Successfully :', result);
-    },
-    error: () => {
-      console.error('Failed in Deleting Notes :');
-    }
-  });
-}
 
 
   addLabel() {

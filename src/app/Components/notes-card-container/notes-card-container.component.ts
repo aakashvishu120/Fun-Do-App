@@ -1,46 +1,86 @@
-import { ChangeDetectionStrategy, Component, OnInit,Input } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { NotesService } from '../../Services/notes/notes.service';
 import { MatCardModule } from '@angular/material/card';
+import { NotesService } from '../../Services/notes/notes.service';
 import { NotesIconComponent } from '../notes-icon/notes-icon.component';
+
+// Define a strongly typed Note interface
+interface Note {
+  id: string;
+  title: string;
+  description: string;
+  color?: string;
+  isArchived?: boolean;
+  isDeleted?: boolean;
+}
 
 @Component({
   selector: 'app-notes-card-container',
+  standalone: true,
   imports: [
+    CommonModule,
     MatButtonModule,
     MatIconModule,
-    CommonModule,
     MatInputModule,
     MatFormFieldModule,
     MatCardModule,
-    NotesIconComponent,
+    NotesIconComponent
   ],
   templateUrl: './notes-card-container.component.html',
   styleUrl: './notes-card-container.component.scss'
 })
 export class NotesCardContainerComponent implements OnInit {
-  constructor(
-    private note: NotesService
-  ) { }
+  @Input() notes: Note[] = [];
+  @Output() refreshRequested = new EventEmitter<void>();
+  @Input() fetchSelf: boolean = false;
 
-  @Input() notes: any[] = [];
-  ngOnInit() {
-    this.note.getNotes().subscribe({
+  constructor(private noteService: NotesService) {}
+
+  ngOnInit(): void {
+    // Do nothing if notes are passed as input.
+    // If you want to fetch them dynamically, remove [notes] binding from parent
+    if (this.notes.length === 0) {
+      this.fetchNotes();
+    }
+  }
+
+  fetchNotes(): void {
+    this.noteService.getNotes().subscribe({
       next: (result: any) => {
-        console.log('Notes Fetched Successfully inside card container:', result);
-        // this.notes = result.data?.data || [];
-        const allNotes = result.data?.data || [];
-        this.notes = allNotes.filter((note: any) => !note.isDeleted && !note.isArchived);
-
-
+        console.log('Notes fetched successfully:', result);
+        const allNotes: Note[] = result.data?.data || [];
+        this.notes = allNotes.filter(note => !note.isDeleted && !note.isArchived);
       },
       error: () => {
-        console.error('Failed in Fetching the Notes :');
+        console.error('Failed to fetch notes.');
       }
     });
+  }
+
+  archiveNote(noteId: string): void {
+    const payload = {
+      noteIdList: [noteId],
+      isArchived: true
+    };
+
+    this.noteService.archiveNotes(payload).subscribe({
+      next: () => {
+        console.log('Note archived successfully');
+        this.notes = this.notes.filter((note: Note) => note.id !== noteId);
+        this.refreshRequested.emit(); // Notify parent
+      },
+      error: err => {
+        console.error('Error archiving note:', err);
+      }
+    });
+  }
+
+  onNoteTrashed(): void {
+    console.log('Note trashed - refreshing in card container');
+    this.fetchNotes(); // ✅ Refresh here only!
   }
 }

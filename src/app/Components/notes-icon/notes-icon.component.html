@@ -21,22 +21,22 @@
 
 
         <button type="button" *ngIf="!hideIcons.includes('add_alert')" mat-icon-button class="example-icon"
-            aria-label="Example icon-button with share icon">
+            aria-label="Alert icon">
             <mat-icon class="icon">add_alert</mat-icon>
         </button>
 
         <button type="button" *ngIf="!hideIcons.includes('person_add')" mat-icon-button class="example-icon"
-            aria-label="Example icon-button with share icon">
+            aria-label="Add person icon">
             <mat-icon class="icon">person_add</mat-icon>
         </button>
 
         <button type="button" *ngIf="!hideIcons.includes('photo')" mat-icon-button class="example-icon"
-            aria-label="Example icon-button with share icon">
+            aria-label="Photo icon">
             <mat-icon class="icon">photo</mat-icon>
         </button>
 
         <button type="button" *ngIf="!hideIcons.includes('archive')" mat-icon-button class="example-icon"
-            aria-label="Example icon-button with share icon">
+            aria-label="Archive icon" (click)="onArchiveClicked()">
             <mat-icon class="icon">archive</mat-icon>
         </button>
 
@@ -46,7 +46,7 @@
         </button>
 
         <mat-menu #menu="matMenu">
-            <app-note-menu [noteId]="noteId"></app-note-menu>
+            <app-note-menu [noteId]="noteId" (trashed)="onNoteTrashed()"></app-note-menu>
         </mat-menu>
 
         <button type="button" *ngIf="!hideIcons.includes('undo')" mat-icon-button class="example-icon"

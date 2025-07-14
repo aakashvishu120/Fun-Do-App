@@ -9,7 +9,7 @@
         </mat-card-content>
         <mat-card-content class="icons-content">
             <app-notes-icon [noteId]="note.id" context="card"
-                [hideIcons]="['undo', 'redo', 'format_color_text', 'close']" class="embedded-icons"></app-notes-icon>
+                [hideIcons]="['undo', 'redo', 'format_color_text', 'close']" class="embedded-icons"  (archive)="archiveNote(note.id)" (trashed)="onNoteTrashed()"></app-notes-icon>
         </mat-card-content>
     </mat-card>
 </div>
