@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit, EventEmitter, Output, ViewChild  } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, EventEmitter, Output, ViewChild } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
@@ -61,6 +61,12 @@ export class NotesComponent implements OnInit {
   onSubmit(): void {
     console.log("notes form values", this.notesForm.value);
 
+    const { title, description, color } = this.notesForm.value;
+    if (!title?.trim() && !description?.trim() && !color) {
+      console.warn('Form is empty. Note not added.');
+      return; 
+    }
+
     this.note.addNotes(this.notesForm.value).subscribe({
       next: (result: any) => {
         console.log('Notes Added Successfully :', result);
@@ -85,7 +91,7 @@ export class NotesComponent implements OnInit {
     this.notesForm = this.fb.group({
       title: [''],
       description: [''],
-      color : ['']
+      color: ['']
     });
   }
 
