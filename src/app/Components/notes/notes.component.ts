@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, EventEmitter, Output, ViewChild  } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
@@ -31,13 +31,14 @@ import { NotesCardContainerComponent } from '../notes-card-container/notes-card-
 export class NotesComponent implements OnInit {
   showButtons = true;
   selectedColor: string = '';
-
   notesForm!: FormGroup;
 
   constructor(
     private fb: FormBuilder,
     private note: NotesService
   ) { }
+
+  @ViewChild(NotesCardContainerComponent) cardContainer!: NotesCardContainerComponent;
 
   hideButtons() {
     this.showButtons = false;
@@ -64,6 +65,7 @@ export class NotesComponent implements OnInit {
       next: (result: any) => {
         console.log('Notes Added Successfully :', result);
         this.onFormClose();
+        this.cardContainer.fetchNotes();  //refesh the card list
       },
       error: () => {
         console.error('Failed in Adding Notes :');
