@@ -34,6 +34,13 @@
             <mat-icon class="icon">archive</mat-icon>
         </button>
 
+        <!-- for unarchive menu only -->
+        <button type="button" *ngIf="context === 'archive' && !hideIcons.includes('unarchive')" mat-icon-button class="example-icon" aria-label="Unarchive icon"  (click)="onUnarchiveClicked()">
+            <mat-icon class="icon">unarchive</mat-icon>
+        </button>
+        <!-- for unarchive menu only -->
+
+
         <button type="button" *ngIf="!hideIcons.includes('more_vert')" mat-icon-button [matMenuTriggerFor]="menu"
             aria-label="More options">
             <mat-icon class="icon">more_vert</mat-icon>
@@ -52,22 +59,21 @@
             aria-label="Example icon-button with share icon">
             <mat-icon class="icon" disabled>redo</mat-icon>
         </button>
+
+        <!-- for trash menu only -->
+        <button type="button" *ngIf="context === 'trash'" mat-icon-button class="example-icon" aria-label="Restore icon"
+            (click)="onRestoreClicked()">
+            <mat-icon class="icon">restore_from_trash</mat-icon>
+        </button>
+
+        <button type="button" *ngIf="context === 'trash'" mat-icon-button class="example-icon"
+            aria-label="Delete forever icon" (click)="onDeleteForeverClicked()">
+            <mat-icon class="icon">delete_forever</mat-icon>
+        </button>
     </div>
     <!-- <button class="close-button">Close</button> -->
     <button *ngIf="!hideIcons.includes('close') && context === 'form'" mat-button type="submit" class="close-button">
         Close
-    </button>
-
-
-    <!-- for trash menu only -->
-    <button type="button" *ngIf="context === 'trash'" mat-icon-button class="example-icon" aria-label="Restore icon"
-        (click)="onRestoreClicked()">
-        <mat-icon class="icon">restore_from_trash</mat-icon>
-    </button>
-
-    <button type="button" *ngIf="context === 'trash'" mat-icon-button class="example-icon"
-        aria-label="Delete forever icon" (click)="onDeleteForeverClicked()">
-        <mat-icon class="icon">delete_forever</mat-icon>
     </button>
 
 </div>

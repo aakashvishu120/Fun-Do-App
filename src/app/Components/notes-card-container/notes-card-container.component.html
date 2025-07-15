@@ -16,7 +16,8 @@
                 (archive)="archiveNote(note.id)" 
                 (trashed)="onNoteTrashed()" 
                 (restore)="restore.emit(note.id)"
-                (deleteForever)="deleteForever.emit(note.id)">
+                (deleteForever)="deleteForever.emit(note.id)"
+                (unarchived)="unarchived.emit(note.id)">
             </app-notes-icon>
         </mat-card-content>
     </mat-card>

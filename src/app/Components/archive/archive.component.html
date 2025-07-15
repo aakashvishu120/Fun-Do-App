@@ -1,1 +1,5 @@
-<app-notes-card-container [notes]="notes"></app-notes-card-container>
+<app-notes-card-container 
+    [notes]="notes" 
+    [cardContext]="'archive'"
+    (unarchived)="unArchivedNotes($event)">
+</app-notes-card-container>

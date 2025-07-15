@@ -23,7 +23,7 @@ import { ColorPickerComponent } from '../color-picker/color-picker.component';
 export class NotesIconComponent {
   @Input() hideIcons: string[] = [];
   // @Input() context: 'form' | 'card' = 'form';
-  @Input() context: 'form' | 'card' | 'trash' = 'form';
+  @Input() context: 'form' | 'card' | 'trash' | 'archive' = 'form';
   @Input() noteId!: string;
 
   @Output() colorChange = new EventEmitter<string>();
@@ -50,6 +50,8 @@ export class NotesIconComponent {
 
   @Output() restore = new EventEmitter<void>();
   @Output() deleteForever = new EventEmitter<void>();
+  @Output() unarchived = new EventEmitter<void>();
+
 
   onRestoreClicked() {
     this.restore.emit();
@@ -57,6 +59,12 @@ export class NotesIconComponent {
 
   onDeleteForeverClicked() {
     this.deleteForever.emit();
+  }
+
+  onUnarchiveClicked(){
+    console.log("unachived event start");
+    this.unarchived.emit();
+    console.log("unachived event end");
   }
 
 }

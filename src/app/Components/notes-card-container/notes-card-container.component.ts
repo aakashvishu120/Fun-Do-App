@@ -37,6 +37,10 @@ export class NotesCardContainerComponent implements OnInit {
   @Input() notes: Note[] = [];
   @Output() refreshRequested = new EventEmitter<void>();
   @Input() fetchSelf: boolean = false;
+  @Input() cardContext: 'form' | 'card' | 'trash' | 'archive' = 'card';
+  @Output() restore = new EventEmitter<string>();
+  @Output() deleteForever = new EventEmitter<string>();
+  @Output() unarchived = new EventEmitter<string>();
 
   constructor(private noteService: NotesService) { }
 
@@ -82,14 +86,13 @@ export class NotesCardContainerComponent implements OnInit {
     this.fetchNotes(); // ✅ Refresh here only!
   }
 
-  @Input() cardContext: 'form' | 'card' | 'trash' = 'card';
-  @Output() restore = new EventEmitter<string>();
-  @Output() deleteForever = new EventEmitter<string>();
-
-
   getHiddenIcons(): string[] {
     if (this.cardContext === 'trash') {
       return ['format_color_text', 'palette', 'add_alert', 'person_add', 'photo', 'archive', 'more_vert', 'undo', 'redo', 'close']; // hide unneeded trash view icons
+    }
+
+    if(this.cardContext === 'archive'){
+      return ['undo', 'redo', 'format_color_text', 'close', 'archive'];
     }
     return ['undo', 'redo', 'format_color_text', 'close'];
   }
