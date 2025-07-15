@@ -45,23 +45,23 @@ export class NotesCardContainerComponent implements OnInit {
   constructor(private noteService: NotesService) { }
 
   ngOnInit(): void {
-    if (this.notes.length === 0) {
-      this.fetchNotes();
-    }
+    // if (this.notes.length === 0) {
+    //   this.fetchNotes();
+    // }
   }
 
-  fetchNotes(): void {
-    this.noteService.getNotes().subscribe({
-      next: (result: any) => {
-        console.log('Notes fetched successfully:', result);
-        const allNotes: Note[] = result.data?.data || [];
-        this.notes = allNotes.filter(note => !note.isDeleted && !note.isArchived);
-      },
-      error: () => {
-        console.error('Failed to fetch notes.');
-      }
-    });
-  }
+  // fetchNotes(): void {
+  //   this.noteService.getNotes().subscribe({
+  //     next: (result: any) => {
+  //       console.log('Notes fetched successfully:', result);
+  //       const allNotes: Note[] = result.data?.data || [];
+  //       this.notes = allNotes.filter(note => !note.isDeleted && !note.isArchived);
+  //     },
+  //     error: () => {
+  //       console.error('Failed to fetch notes.');
+  //     }
+  //   });
+  // }
 
   archiveNote(noteId: string): void {
     const payload = {
@@ -83,7 +83,8 @@ export class NotesCardContainerComponent implements OnInit {
 
   onNoteTrashed(): void {
     console.log('Note trashed - refreshing in card container');
-    this.fetchNotes(); // ✅ Refresh here only!
+    // this.fetchNotes(); // ✅ Refresh here only!
+      this.refreshRequested.emit(); // 🔁 Let parent fetch notes again
   }
 
   getHiddenIcons(): string[] {

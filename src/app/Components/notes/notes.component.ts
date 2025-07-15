@@ -9,6 +9,17 @@ import { NotesService } from '../../Services/notes/notes.service';
 import { MatCardModule } from '@angular/material/card';
 import { NotesIconComponent } from '../notes-icon/notes-icon.component';
 import { NotesCardContainerComponent } from '../notes-card-container/notes-card-container.component';
+import { SearchService } from '../../Services/search/search.service';
+import { Subscription } from 'rxjs';
+
+interface Note {
+  id: string;
+  title: string;
+  description: string;
+  color?: string;
+  isArchived?: boolean;
+  isDeleted?: boolean;
+}
 
 
 @Component({
@@ -32,13 +43,17 @@ export class NotesComponent implements OnInit {
   showButtons = true;
   selectedColor: string = '';
   notesForm!: FormGroup;
+  filteredNotes: any[] = [];
+  private searchSub!: Subscription;
 
   constructor(
     private fb: FormBuilder,
-    private note: NotesService
+    private note: NotesService,
+    private searchService: SearchService
+
   ) { }
 
-  @ViewChild(NotesCardContainerComponent) cardContainer!: NotesCardContainerComponent;
+  // @ViewChild(NotesCardContainerComponent) cardContainer!: NotesCardContainerComponent;
 
   hideButtons() {
     this.showButtons = false;
@@ -64,14 +79,14 @@ export class NotesComponent implements OnInit {
     const { title, description, color } = this.notesForm.value;
     if (!title?.trim() && !description?.trim() && !color) {
       console.warn('Form is empty. Note not added.');
-      return; 
+      return;
     }
 
     this.note.addNotes(this.notesForm.value).subscribe({
       next: (result: any) => {
         console.log('Notes Added Successfully :', result);
         this.onFormClose();
-        this.cardContainer.fetchNotes();  //refesh the card list
+        this.fetchNotes();
       },
       error: () => {
         console.error('Failed in Adding Notes :');
@@ -92,6 +107,43 @@ export class NotesComponent implements OnInit {
       description: [''],
       color: ['']
     });
+
+    this.fetchNotes();
+
+    //subscribe the service
+    this.searchSub = this.searchService.search$.subscribe(query => {
+      this.applySearch(query);
+    });
   }
 
+  fetchNotes(): void {
+    this.note.getNotes().subscribe({
+      next: (result: any) => {
+        console.log('Notes fetched successfully:', result);
+        const allNotes: Note[] = result.data?.data || [];
+        this.notes = allNotes.filter(note => !note.isDeleted && !note.isArchived);
+        this.filteredNotes = [...this.notes];
+      },
+      error: () => {
+        console.error('Failed to fetch notes.');
+      }
+    });
+  }
+
+  applySearch(query: string) {
+    if (!query || typeof query !== 'string') {
+      this.filteredNotes = [...this.notes]; // default to showing all notes
+      return;
+    }
+
+    const lower = query.toLowerCase().trim();
+    this.filteredNotes = this.notes.filter(note =>
+      note.title?.toLowerCase().includes(lower) ||
+      note.description?.toLowerCase().includes(lower)
+    );
+  }
+
+  ngOnDestroy() {
+    this.searchSub?.unsubscribe();
+  }
 }

@@ -151,6 +151,29 @@ Dashboard Page
 
 
 
+Pages : 
+- dashboard
+- login
+- signUp
+
+
+Component
+- archive
+- color-picker
+- editlabel
+- note-menu
+- notes-card-container
+- notes-icon
+- remainder
+- trash
+
+
+What is done today:
+What I will do next: 
+Is there any hurdle/block/issue you faced:
+
+
+
 1. Parent-to-Child Communication:
 @Input() Decorator: This is the primary method for passing data from a parent component to a child component. The parent binds a property to an input property on the child.
 TypeScript

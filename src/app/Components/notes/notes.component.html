@@ -36,4 +36,4 @@
     </div>
 </div>
 
-<app-notes-card-container></app-notes-card-container>
+<app-notes-card-container [notes]="filteredNotes" (refreshRequested)="fetchNotes()"></app-notes-card-container>
