@@ -1,1 +1,7 @@
-<app-notes-card-container [notes]="notes"  (trashed)="onNoteTrashed()"></app-notes-card-container>
+<app-notes-card-container 
+    [notes]="notes" 
+    (trashed)="onNoteTrashed()" 
+    (restore)="restoreNote($event)"
+    (deleteForever)="deleteNotePermanently($event)" 
+    [cardContext]="'trash'">
+</app-notes-card-container>

@@ -38,11 +38,9 @@ export class NotesCardContainerComponent implements OnInit {
   @Output() refreshRequested = new EventEmitter<void>();
   @Input() fetchSelf: boolean = false;
 
-  constructor(private noteService: NotesService) {}
+  constructor(private noteService: NotesService) { }
 
   ngOnInit(): void {
-    // Do nothing if notes are passed as input.
-    // If you want to fetch them dynamically, remove [notes] binding from parent
     if (this.notes.length === 0) {
       this.fetchNotes();
     }
@@ -83,4 +81,17 @@ export class NotesCardContainerComponent implements OnInit {
     console.log('Note trashed - refreshing in card container');
     this.fetchNotes(); // ✅ Refresh here only!
   }
+
+  @Input() cardContext: 'form' | 'card' | 'trash' = 'card';
+  @Output() restore = new EventEmitter<string>();
+  @Output() deleteForever = new EventEmitter<string>();
+
+
+  getHiddenIcons(): string[] {
+    if (this.cardContext === 'trash') {
+      return ['format_color_text', 'palette', 'add_alert', 'person_add', 'photo', 'archive', 'more_vert', 'undo', 'redo', 'close']; // hide unneeded trash view icons
+    }
+    return ['undo', 'redo', 'format_color_text', 'close'];
+  }
+
 }

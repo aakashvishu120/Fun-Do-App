@@ -18,10 +18,10 @@ constructor(
     this.note.getArchiveNotesList().subscribe({
       next: (result: any) => {
         this.notes = result.data?.data || [];
-        console.log("inside archive component",this.notes);
+        console.log("Get Archive Notes List",this.notes);
       },
       error: () => {
-        console.error('Failed in Fetching the Notes :');
+        console.error('Failed in Archiving the Notes :');
       }
     });
   }

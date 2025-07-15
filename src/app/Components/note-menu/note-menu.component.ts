@@ -5,12 +5,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { NotesService } from '../../Services/notes/notes.service';
 
- 
 interface DeleteNotePayload {
   isDeleted: boolean;
   noteIdList: string[];
 }
-
 
 @Component({
   selector: 'app-note-menu',
@@ -28,12 +26,11 @@ export class NoteMenuComponent {
     private note: NotesService
   ) { }
 
-
   @Input() noteId!: string;
   @Output() trashed = new EventEmitter<void>();  //for refershing the parent after delete
 
   deleteNote() {
-    console.log(`Deleting note with ID: ${this.noteId}`);
+    console.log(`Temp Deleting note with ID: ${this.noteId}`);
 
     const payload: DeleteNotePayload = {
       isDeleted: true,
@@ -50,7 +47,6 @@ export class NoteMenuComponent {
       }
     });
   }
-
 
   addLabel() {
     console.log(`Adding label to note: ${this.noteId}`);

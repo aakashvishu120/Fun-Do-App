@@ -8,8 +8,16 @@
             <p>{{ note.description }}</p>
         </mat-card-content>
         <mat-card-content class="icons-content">
-            <app-notes-icon [noteId]="note.id" context="card"
-                [hideIcons]="['undo', 'redo', 'format_color_text', 'close']" class="embedded-icons"  (archive)="archiveNote(note.id)" (trashed)="onNoteTrashed()"></app-notes-icon>
+            <app-notes-icon 
+                [noteId]="note.id" 
+                [context]="cardContext"
+                [hideIcons]="getHiddenIcons()" 
+                class="embedded-icons"  
+                (archive)="archiveNote(note.id)" 
+                (trashed)="onNoteTrashed()" 
+                (restore)="restore.emit(note.id)"
+                (deleteForever)="deleteForever.emit(note.id)">
+            </app-notes-icon>
         </mat-card-content>
     </mat-card>
 </div>

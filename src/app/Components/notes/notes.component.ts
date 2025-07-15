@@ -85,7 +85,6 @@ export class NotesComponent implements OnInit {
     console.log('notes component Selected color:', color);
   }
 
-
   notes: any[] = [];
   ngOnInit() {
     this.notesForm = this.fb.group({

@@ -5,11 +5,6 @@
             <mat-icon class="icon">format_color_text</mat-icon>
         </button>
 
-        <!-- <button *ngIf="!hideIcons.includes('palette')" mat-icon-button class="example-icon"
-            aria-label="Example icon-button with share icon">
-            <mat-icon class="icon">palette</mat-icon>
-        </button> -->
-
         <mat-menu #colorMenu="matMenu">
             <app-color-picker (colorSelected)="setNoteColor($event)"></app-color-picker>
         </mat-menu>
@@ -18,7 +13,6 @@
             [matMenuTriggerFor]="colorMenu" aria-label="Color palette">
             <mat-icon class="icon">palette</mat-icon>
         </button>
-
 
         <button type="button" *ngIf="!hideIcons.includes('add_alert')" mat-icon-button class="example-icon"
             aria-label="Alert icon">
@@ -63,4 +57,17 @@
     <button *ngIf="!hideIcons.includes('close') && context === 'form'" mat-button type="submit" class="close-button">
         Close
     </button>
+
+
+    <!-- for trash menu only -->
+    <button type="button" *ngIf="context === 'trash'" mat-icon-button class="example-icon" aria-label="Restore icon"
+        (click)="onRestoreClicked()">
+        <mat-icon class="icon">restore_from_trash</mat-icon>
+    </button>
+
+    <button type="button" *ngIf="context === 'trash'" mat-icon-button class="example-icon"
+        aria-label="Delete forever icon" (click)="onDeleteForeverClicked()">
+        <mat-icon class="icon">delete_forever</mat-icon>
+    </button>
+
 </div>
