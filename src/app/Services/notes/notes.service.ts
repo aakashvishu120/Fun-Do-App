@@ -41,8 +41,12 @@ export class NotesService {
     return this.http.postApi('/notes/archiveNotes', data, this.getAuthHeaders());
   }
 
-  deleteForeverNotes(data :any){
+  deleteForeverNotes(data: any) {
     return this.http.postApi('/notes/deleteForeverNotes', data, this.getAuthHeaders());
+  }
+
+  updateNote(data: any) {
+    return this.http.postApi('/notes/updateNotes', data, this.getAuthHeaders());
   }
 
 }

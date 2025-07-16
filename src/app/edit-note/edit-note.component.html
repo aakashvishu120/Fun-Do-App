@@ -1,0 +1,11 @@
+<div class="edit-dialog" [ngStyle]="{ 'background-color': editForm.value.color || '#fff' }">
+  <form class="editForm" [formGroup]="editForm" (ngSubmit)="onSave()" [ngStyle]="{ 'background-color': editForm.value.color || '#fff' }">
+    <input class="editTitle" matInput placeholder="Title" formControlName="title" [ngStyle]="{ 'background-color': editForm.value.color || '#fff' }" />
+    <textarea class="editDesc" matInput placeholder="Take a note..." formControlName="description" [ngStyle]="{ 'background-color': editForm.value.color || '#fff' }"></textarea>
+
+    <div class="actions">
+      <button type="submit" mat-button>Save</button>
+      <button type="button" mat-button (click)="onCancel()">Cancel</button>
+    </div>
+  </form>
+</div>

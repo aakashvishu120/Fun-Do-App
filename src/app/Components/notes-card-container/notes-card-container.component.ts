@@ -7,6 +7,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
 import { NotesService } from '../../Services/notes/notes.service';
 import { NotesIconComponent } from '../notes-icon/notes-icon.component';
+import { MatDialog } from '@angular/material/dialog';
+import { EditNoteComponent } from '../../edit-note/edit-note.component';
+
 
 // Define a strongly typed Note interface
 interface Note {
@@ -33,7 +36,7 @@ interface Note {
   templateUrl: './notes-card-container.component.html',
   styleUrl: './notes-card-container.component.scss'
 })
-export class NotesCardContainerComponent implements OnInit {
+export class NotesCardContainerComponent{
   @Input() notes: Note[] = [];
   @Output() refreshRequested = new EventEmitter<void>();
   @Input() fetchSelf: boolean = false;
@@ -42,26 +45,7 @@ export class NotesCardContainerComponent implements OnInit {
   @Output() deleteForever = new EventEmitter<string>();
   @Output() unarchived = new EventEmitter<string>();
 
-  constructor(private noteService: NotesService) { }
-
-  ngOnInit(): void {
-    // if (this.notes.length === 0) {
-    //   this.fetchNotes();
-    // }
-  }
-
-  // fetchNotes(): void {
-  //   this.noteService.getNotes().subscribe({
-  //     next: (result: any) => {
-  //       console.log('Notes fetched successfully:', result);
-  //       const allNotes: Note[] = result.data?.data || [];
-  //       this.notes = allNotes.filter(note => !note.isDeleted && !note.isArchived);
-  //     },
-  //     error: () => {
-  //       console.error('Failed to fetch notes.');
-  //     }
-  //   });
-  // }
+  constructor(private noteService: NotesService, private dialog: MatDialog) { }
 
   archiveNote(noteId: string): void {
     const payload = {
@@ -97,5 +81,19 @@ export class NotesCardContainerComponent implements OnInit {
     }
     return ['undo', 'redo', 'format_color_text', 'close'];
   }
+
+  openEditDialog(note: Note): void {
+  const dialogRef = this.dialog.open(EditNoteComponent, {
+    data: note,
+    autoFocus: false
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    if (result) {
+      this.refreshRequested.emit();
+    }
+  });
+}
+
 
 }

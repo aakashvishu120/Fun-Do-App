@@ -1,0 +1,36 @@
+::ng-deep .cdk-overlay-pane.mat-mdc-dialog-panel {
+    width: 1000px;
+    height: 200px;
+}
+
+.edit-dialog {}
+
+.editForm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+    flex-direction: column;
+}
+
+.actions {}
+
+.editTitle,
+.editDesc {
+    display: block;
+    width : -webkit-fill-available;
+    border: none;
+    padding : 1rem 1rem 0rem 1rem;
+}
+
+.editTitle{
+    font-size: 1.5rem;
+}   
+
+.editDesc{
+    font-size: 0.8rem;
+}
+
+::ng-deep .mat-mdc-dialog-surface{
+    height: fit-content;
+}
