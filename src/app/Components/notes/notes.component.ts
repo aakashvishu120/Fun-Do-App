@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit, EventEmitter, Output, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, EventEmitter, Output, ViewChild, OnDestroy } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
@@ -11,6 +11,9 @@ import { NotesIconComponent } from '../notes-icon/notes-icon.component';
 import { NotesCardContainerComponent } from '../notes-card-container/notes-card-container.component';
 import { SearchService } from '../../Services/search/search.service';
 import { Subscription } from 'rxjs';
+import { MatTooltipModule } from '@angular/material/tooltip';  // ✅ Import this
+import { ViewService } from '../../Services/view/view.service';
+
 
 interface Note {
   id: string;
@@ -34,23 +37,25 @@ interface Note {
     ReactiveFormsModule,
     MatCardModule,
     NotesIconComponent,
-    NotesCardContainerComponent
+    NotesCardContainerComponent,
+    MatTooltipModule
   ],
   templateUrl: './notes.component.html',
   styleUrl: './notes.component.scss'
 })
-export class NotesComponent implements OnInit {
+export class NotesComponent implements OnInit, OnDestroy {
   showButtons = true;
   selectedColor: string = '';
   notesForm!: FormGroup;
   filteredNotes: any[] = [];
   private searchSub!: Subscription;
-
+  isListView: boolean = false;
+  private viewSub!: Subscription;
   constructor(
     private fb: FormBuilder,
     private note: NotesService,
-    private searchService: SearchService
-
+    private searchService: SearchService,
+    private viewService: ViewService
   ) { }
 
   // @ViewChild(NotesCardContainerComponent) cardContainer!: NotesCardContainerComponent;
@@ -114,6 +119,10 @@ export class NotesComponent implements OnInit {
     this.searchSub = this.searchService.search$.subscribe(query => {
       this.applySearch(query);
     });
+
+    this.viewSub = this.viewService.isListView$.subscribe(value => {
+      this.isListView = value;
+    });
   }
 
   fetchNotes(): void {
@@ -143,7 +152,12 @@ export class NotesComponent implements OnInit {
     );
   }
 
+  toggleViewMode() {
+    this.isListView = !this.isListView;
+  }
+
   ngOnDestroy() {
     this.searchSub?.unsubscribe();
+    this.viewSub?.unsubscribe();
   }
 }

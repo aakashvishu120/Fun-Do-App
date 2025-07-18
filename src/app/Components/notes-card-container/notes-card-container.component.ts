@@ -44,6 +44,8 @@ export class NotesCardContainerComponent{
   @Output() restore = new EventEmitter<string>();
   @Output() deleteForever = new EventEmitter<string>();
   @Output() unarchived = new EventEmitter<string>();
+  @Input() isListView: boolean = false;
+
 
   constructor(private noteService: NotesService, private dialog: MatDialog) { }
 
@@ -94,6 +96,8 @@ export class NotesCardContainerComponent{
     }
   });
 }
+
+
 
 
 }

@@ -1,4 +1,4 @@
-<div class="notes-card-container">
+<div class="notes-card-container" [ngClass]="{ 'list-view': isListView, 'grid-view': !isListView }">
     <mat-card 
         class="single-card-unit" 
         appearance="outlined" 

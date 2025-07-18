@@ -36,4 +36,11 @@
     </div>
 </div>
 
-<app-notes-card-container [notes]="filteredNotes" (refreshRequested)="fetchNotes()"></app-notes-card-container>
+<!-- <div style="display: flex; justify-content: flex-end; margin: 1rem 2rem;">
+  <button mat-icon-button (click)="toggleViewMode()" [matTooltip]="isListView ? 'Grid View' : 'List View'">
+    <mat-icon>{{ isListView ? 'view_module' : 'view_list' }}</mat-icon>
+    hiiiiii
+  </button>
+</div> -->
+
+<app-notes-card-container  [isListView]="isListView" [notes]="filteredNotes" (refreshRequested)="fetchNotes()"></app-notes-card-container>
